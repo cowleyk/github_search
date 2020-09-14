@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 
-
 function descendingComparator(a, b, orderBy) {
   // handle nested owner username
   if(orderBy === 'owner') {

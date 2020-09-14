@@ -12,8 +12,6 @@ import { setRepos } from './actions/Actions';
 import ReposTable from './ReposTable';
 import './App.css';
 
-
-
 class ReposSearch extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +45,8 @@ class ReposSearch extends Component {
         const { searchTerms, language, sort } = this.state;
         
         const { dispatch } = this.props;
-        // getRepos call can be done inside action with the installation of Thunk middleware
+
+        // getRepos could be moved inside redux action with the installation of Thunk middleware
         const getRepoData = async function(queryString) {
             let repoData = await getRepos(queryString)
             if(!repoData.items) return 'Error fetching data'
@@ -55,9 +54,11 @@ class ReposSearch extends Component {
             return repoData
         }
 
+        // create query string
         let formedQuery = `${searchTerms.trim().replace(/\s/g, '+')}`
         if(language.length) formedQuery += `+language:${language}`
         if(sort.length) formedQuery += `&sort:${sort}`
+
         // additional search querys can be added based on github's qualifiers
         // https://docs.github.com/en/github/searching-for-information-on-github/searching-for-repositories
 
@@ -132,6 +133,5 @@ const mapStateToProps = state => ({
   repos: state.repos,
   details: state.details
 })
-
 
 export default connect(mapStateToProps)(ReposSearch);
