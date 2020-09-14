@@ -1,0 +1,21 @@
+# dependencies
+/github_search_api/node_modules
+/github_search_ui/node_modules
+/github_search_api/package-lock.json
+/github_search_ui/package-lock.json
+
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/github_search_ui/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
