@@ -42,7 +42,6 @@ function Details(props) {
     const handleClick = (next) => {
         // this will navigate through original fetched list
         // the order will not be the same as the table if the table had been sorted
-        let next_id = parseInt(id) + next
         if(!next) {
             props.history.push('/')
         } else {
