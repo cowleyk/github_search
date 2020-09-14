@@ -14,9 +14,9 @@ router.get('/:queryString', function(req, res, next) {
   .catch((err) => {
     console.log('ERROR')
     if(err.response) {
-      res.status(err.response.status).json({ message: err.response.statusText, items: [] })
+      res.status(err.response.status).json({ message: err.response.statusText })
     } else {
-      res.status(400).json({ message: 'Error fetching repos', items: [] })
+      res.status(400).json({ message: 'Error fetching repos' })
     }
   })
   
