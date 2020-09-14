@@ -27,6 +27,7 @@ function Details(props) {
     const repo = props.repos[id];
     let repoData = [];
     if(props.repos[id]) {
+        // only form up data if repos have been fetched
         repoData = [
             {id: 'owner', name: 'Owner', data: repo.owner.login},
             {id: 'created', name: 'Created At', data: repo.created_at},
@@ -49,6 +50,7 @@ function Details(props) {
         }
     }
 
+    // if no repo data exists, go back to main page
     if(!props.repos[id]) {
         props.history.push('/');
         return null

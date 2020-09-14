@@ -4,7 +4,7 @@ const axios = require('axios');
 
 /* GET repos listing. */
 router.get('/:queryString', function(req, res, next) {
-  // https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars
+  // example url: https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars
   return axios.get(`https://api.github.com/search/repositories?q=${req.params.queryString}`)
   .then((resp) => {
     console.log('Link to be used for fetching next page; ')

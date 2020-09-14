@@ -32,6 +32,9 @@ class ReposSearch extends Component {
         e.preventDefault();
         let newState = { terms_error: false }
         newState[e.target.id] = e.target.value;
+
+        // only validating the search terms
+        // github will ignore gibberish if input in the language field
         if (e.target.id === 'searchTerms'
             && e.target.value.length
             && !e.target.value.match(/^[0-9a-z\s]+$/i)) newState.terms_error = true;
@@ -67,6 +70,7 @@ class ReposSearch extends Component {
 
     render() {
         const { searchTerms, language, sort, terms_error, errorMessage } = this.state;
+        const { repos, history } = this.props;
         return (
             <div className='App'>
                 <h1>Kevin's Github Search App</h1>
@@ -108,14 +112,14 @@ class ReposSearch extends Component {
                         </RadioGroup>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="contained" type="submit"  style={{marginBottom: '5%'}}>
+                        <Button variant="contained" type="submit" disabled={terms_error} style={{marginBottom: '5%'}}>
                             Search
                         </Button>
                     </Grid>
                     </form>
                 </Grid>
-                {this.props.repos.length > 0 ? 
-                    <ReposTable fetchedRepos={this.props.repos} history={this.props.history} />
+                {repos.length > 0 ? 
+                    <ReposTable fetchedRepos={repos} history={history} />
                     :
                     <p style={{textAlign: 'center'}}>{errorMessage.length > 0 ? errorMessage : 'No Repos Found'}</p>
                 }
@@ -123,7 +127,6 @@ class ReposSearch extends Component {
         );
     }
 }
-// disabled={terms_error}
 
 const mapStateToProps = state => ({
   repos: state.repos,

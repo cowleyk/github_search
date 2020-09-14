@@ -57,6 +57,7 @@ const headCells = [
   { id: 'forks_count', numeric: true, disablePadding: false, label: 'Forks' },
 ];
 
+// Fancy table header; could be pulled into it's own file
 function EnhancedTableHead(props) {
   const { classes, order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
