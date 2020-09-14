@@ -41,9 +41,7 @@ class ReposSearch extends Component {
 
     searchRepos(e) {
         e.preventDefault();
-        
-        const { searchTerms, language, sort } = this.state;
-        
+        const { searchTerms, language, sort } = this.state;       
         const { dispatch } = this.props;
 
         // getRepos could be moved inside redux action with the installation of Thunk middleware
