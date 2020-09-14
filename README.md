@@ -1,7 +1,7 @@
 # Kevin Cowley Github Search App
 
 ## Dependancies
-NodeJS
+- NodeJS
 
 ## Set Up
 Install UI packages
@@ -32,6 +32,9 @@ In a new terminal:
 cd ./github_search_api
 npm run start
 ```
+
+The UI will be spun up @ http://localhost:3000
+The API will be available @ http://locahost:4000
 
 ## Technology Used
 UI
