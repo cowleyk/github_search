@@ -63,3 +63,4 @@ I'm a big believer in not testing the functionality of depencancies, but the sor
   - Currently only 30 results are fetched, but in Github's response headers there is a link to the next page that could easily fetch more data
 - More filtering/query parameters to use
   - Github provides ability to search for terms in different files, by creation date, owner, etc
+- On details page, could fetch more repository details from github.  The details provided from the repos searched seemed sufficient to me.
