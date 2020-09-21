@@ -24,6 +24,7 @@ class ReposSearch extends Component {
         }
         this.searchRepos = this.searchRepos.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.setClicked = this.setClicked.bind(this);
     }
 
     handleChange(e) {
@@ -48,7 +49,7 @@ class ReposSearch extends Component {
         const getRepoData = async function(queryString) {
             let repoData = await getRepos(queryString)
             if(!repoData.items) return 'Error fetching data'
-            dispatch(setRepos(repoData.items))
+            dispatch(setRepos(repoData))
             return repoData
         }
 
@@ -65,6 +66,10 @@ class ReposSearch extends Component {
             // Set error message if problem occured with API call
             if(data === 'Error fetching data') this.setState({errorMessage: data})
         })
+    }
+
+    setClicked(index) {
+        console.log('SET CLICKED', index)
     }
 
     render() {
@@ -117,8 +122,8 @@ class ReposSearch extends Component {
                     </Grid>
                     </form>
                 </Grid>
-                {repos.length > 0 ? 
-                    <ReposTable fetchedRepos={repos} history={history} />
+                {repos.items && repos.items.length > 0 ? 
+                    <ReposTable fetchedRepos={repos.items} history={history} />
                     :
                     <p style={{textAlign: 'center'}}>{errorMessage.length > 0 ? errorMessage : 'No Repos Found'}</p>
                 }

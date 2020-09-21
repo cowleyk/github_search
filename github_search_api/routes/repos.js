@@ -9,7 +9,7 @@ router.get('/:queryString', function(req, res, next) {
   .then((resp) => {
     console.log('Link to be used for fetching next page; ')
     console.log(resp.headers.link)
-    res.json({ message: 'REPOS ENDPOINT', items: resp.data.items })
+    res.json({ message: 'REPOS ENDPOINT', items: resp.data.items, next: resp.headers.link })
   })
   .catch((err) => {
     console.log('ERROR')

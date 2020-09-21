@@ -2,7 +2,7 @@ import {
   SET_REPOS,
 } from '../actions/Actions'
 
-export const initialState = []
+export const initialState = {}
 
 function repos(state = initialState, action) {
   switch (action.type) {

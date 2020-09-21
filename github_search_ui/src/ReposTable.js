@@ -140,7 +140,8 @@ export default function ReposTable(props) {
   };
 
   const handleClick = (event, index) => {
-      props.history.push(`/${index}`)
+    props.history.push(`/${index}`)
+    // props.setClicked(index);
   }
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, fetchedRepos.length - page * rowsPerPage);
