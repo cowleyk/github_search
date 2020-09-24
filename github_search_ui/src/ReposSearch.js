@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -9,8 +10,16 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Button from '@material-ui/core/Button';
 import { getRepos } from './api/repos-api';
 import { setRepos } from './actions/Actions';
+import { setDetails } from './actions/Actions';
 import ReposTable from './ReposTable';
 import './App.css';
+
+const styles = () => ({
+    main: {
+        textAlign: 'center',
+        margin: '5%'
+    }
+})
 
 class ReposSearch extends Component {
     constructor(props) {
@@ -69,14 +78,19 @@ class ReposSearch extends Component {
     }
 
     setClicked(index) {
-        console.log('SET CLICKED', index)
+        const { dispatch } = this.props;
+
+        console.log('SET CLICKED', this.props.repos.items[index])
+        dispatch(setDetails(this.props.repos.items[index]))
     }
 
     render() {
         const { searchTerms, language, sort, terms_error, errorMessage } = this.state;
-        const { repos, history } = this.props;
+        const { repos, details, history, classes } = this.props;
+        console.log('details; ', details)
+        console.log('repos; ', repos)
         return (
-            <div className='App'>
+            <div className={classes.main}>
                 <h1>Kevin's Github Search App</h1>
                 <Grid
                     container
@@ -123,7 +137,7 @@ class ReposSearch extends Component {
                     </form>
                 </Grid>
                 {repos.items && repos.items.length > 0 ? 
-                    <ReposTable fetchedRepos={repos.items} history={history} />
+                    <ReposTable fetchedRepos={repos.items} history={history} setClicked={this.setClicked}/>
                     :
                     <p style={{textAlign: 'center'}}>{errorMessage.length > 0 ? errorMessage : 'No Repos Found'}</p>
                 }
@@ -137,4 +151,4 @@ const mapStateToProps = state => ({
   details: state.details
 })
 
-export default connect(mapStateToProps)(ReposSearch);
+export default withStyles(styles)(connect(mapStateToProps)(ReposSearch));

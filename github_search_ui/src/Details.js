@@ -22,11 +22,13 @@ const useStyles = makeStyles({
   });
 
 function Details(props) {
+    console.log('details; ', props.details)
     const classes = useStyles();
     const { id } = useParams();
-    const repo = props.repos[id];
+    let repo;
     let repoData = [];
-    if(props.repos[id]) {
+    if(props.repos.items && props.repos.items[id]) {
+        repo = props.repos.items[id];
         // only form up data if repos have been fetched
         repoData = [
             {id: 'owner', name: 'Owner', data: repo.owner.login},
@@ -50,7 +52,7 @@ function Details(props) {
     }
 
     // if no repo data exists, go back to main page
-    if(!props.repos[id]) {
+    if(!repo) {
         props.history.push('/');
         return null
     }
@@ -94,7 +96,8 @@ function Details(props) {
 }
 
 const mapStateToProps = state => ({
-    repos: state.repos
+    repos: state.repos,
+    details: state.details
 })
 
 export default connect(mapStateToProps)(Details);

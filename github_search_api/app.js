@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const flatCache = require('flat-cache');
 var reposRouter = require('./routes/repos');
+var detailsRouter = require('./routes/details');
 
 var app = express();
 let cache = flatCache.load('productsCache');
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/repos', flatCacheMiddleware, reposRouter);
+app.use('/details', flatCacheMiddleware, detailsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -8,8 +8,7 @@ import {
     switch (action.type) {
       case SET_DETAILS:
         return {
-          ...state,
-          details: action.details
+          ...action.details
         }
       default:
         return state
